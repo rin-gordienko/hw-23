@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "../helpers/axios";
 
 const ImageList = () => {
   const [images, setImages] = useState([]);
@@ -6,12 +7,10 @@ const ImageList = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://picsum.photos/v2/list?page=${page}&limit=10`)
-      .then((response) => response.json())
-      .then((result) => {
-        setImages((prevValue) => [...prevValue, ...result]);
-        setLoading(false);
-      });
+    axios.get(`/v2/list?page=${page}&limit=10`).then((result) => {
+      setImages((prevValue) => [...prevValue, ...result]);
+      setLoading(false);
+    });
   }, [page]);
 
   const handleClick = () => {
@@ -25,14 +24,14 @@ const ImageList = () => {
         Image Gallery
       </h2>
       <ul className="images">
-        {images.map(({ id, download_url}) => (
+        {images.map(({ id, downloadUrl }) => (
           <li key={id} className="list-item">
-            <img className="image" src={download_url} alt={id}></img>
+            <img className="image" src={downloadUrl} alt={id} />
           </li>
         ))}
       </ul>
 
-      <button onClick={handleClick} className="btn">
+      <button type="button" onClick={handleClick} className="btn">
         Show More
       </button>
     </>
