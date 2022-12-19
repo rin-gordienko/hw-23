@@ -4,7 +4,9 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
+.headline {
+  text-align: center;
+}
 .list-item {
   width: 45%;
   margin: 10px;
@@ -29,6 +31,7 @@
   line-height: 20px;
   padding: 6px 16px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .btn:hover {

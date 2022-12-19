@@ -7,7 +7,7 @@ const ImageList = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`/v2/list?page=${page}&limit=10`).then((result) => {
+    axios.get("/v2/list", { params: { page, limit: 10 } }).then((result) => {
       setImages((prevValue) => [...prevValue, ...result]);
       setLoading(false);
     });
@@ -24,9 +24,9 @@ const ImageList = () => {
         Image Gallery
       </h2>
       <ul className="images">
-        {images.map(({ id, downloadUrl }) => (
+        {images.map(({ id, download_url }) => (
           <li key={id} className="list-item">
-            <img className="image" src={downloadUrl} alt={id} />
+            <img className="image" src={download_url} alt={id} />
           </li>
         ))}
       </ul>

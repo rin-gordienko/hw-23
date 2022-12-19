@@ -23,6 +23,8 @@ module.exports = {
         html: true,
       },
     ],
+    camelcase: ["error", { ignoreDestructuring: true }],
+    camelcase: ["error", { allow: ["download_url"] }],
   },
   plugins: ["prettier"],
   ignorePatterns: [".eslintrc.js"],
